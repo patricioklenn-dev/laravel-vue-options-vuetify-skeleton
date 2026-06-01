@@ -14,11 +14,7 @@ export default {
 </script>
 
 <template>
-    <v-btn
-        :type="type"
-        variant="outlined"
-        :disabled="disabled"
-    >
+    <button :type="type" class="btn btn-outline-secondary" :disabled="disabled">
         <slot />
-    </v-btn>
+    </button>
 </template>

@@ -1,7 +1,7 @@
 {
     "name": "laravel/vue-skeleton",
     "type": "project",
-    "description": "Laravel skeleton application with Vue.js, Inertia.js and Vuetify.",
+    "description": "Laravel skeleton application with Vue.js, Inertia.js and Bootstrap 5.",
     "keywords": [
         "laravel",
         "framework"

@@ -28,61 +28,70 @@ export default {
 
 <template>
     <section>
-        <header class="mb-6">
-            <h2 class="text-h6 mb-2">Información de perfil</h2>
-            <p class="text-body-2 text-medium-emphasis">
-                Actualiza la información de tu perfil y la dirección de correo electrónico.
+        <header class="mb-4">
+            <h2 class="h5 mb-2">Información de perfil</h2>
+            <p class="text-muted small mb-0">
+                Actualiza la información de tu perfil y la direcci?n de correo electr?nico.
             </p>
         </header>
 
-        <v-form @submit.prevent="form.patch(route('profile.update'))">
-            <v-text-field
-                label="Nombre"
-                v-model="form.name"
-                :error-messages="form.errors.name"
-                required
-                autofocus
-                autocomplete="name"
-            />
+        <form @submit.prevent="form.patch(route('profile.update'))">
+            <div class="mb-3">
+                <label for="name" class="form-label">Nombre</label>
+                <input
+                    id="name"
+                    v-model="form.name"
+                    type="text"
+                    class="form-control"
+                    :class="{ 'is-invalid': form.errors.name }"
+                    required
+                    autofocus
+                    autocomplete="name"
+                />
+                <div v-if="form.errors.name" class="invalid-feedback">{{ form.errors.name }}</div>
+            </div>
+            <div class="mb-3">
+                <label for="email" class="form-label">Correo electrónico</label>
+                <input
+                    id="email"
+                    v-model="form.email"
+                    type="email"
+                    class="form-control"
+                    :class="{ 'is-invalid': form.errors.email }"
+                    required
+                    autocomplete="username"
+                />
+                <div v-if="form.errors.email" class="invalid-feedback">{{ form.errors.email }}</div>
+            </div>
 
-            <v-text-field
-                label="Correo electrónico"
-                type="email"
-                v-model="form.email"
-                :error-messages="form.errors.email"
-                required
-                autocomplete="username"
-            />
-
-            <div v-if="mustVerifyEmail && user.email_verified_at === null" class="mt-4">
-                <p class="text-body-2 mb-2">
-                    Tu dirección de correo electrónico no está verificada.
+            <div v-if="mustVerifyEmail && user.email_verified_at === null" class="mt-3">
+                <p class="small mb-2">
+                    Tu dirección de correo electrónico no esta verificada.
                     <Link
                         :href="route('verification.send')"
                         method="post"
                         as="button"
-                        class="text-decoration-none"
+                        class="btn btn-link p-0 align-baseline"
                     >
                         Haz clic aquí para reenviar el correo de verificación.
                     </Link>
                 </p>
 
-                <v-alert
+                <div
                     v-show="status === 'verification-link-sent'"
-                    type="success"
-                    variant="tonal"
-                    class="mt-2"
+                    class="alert alert-success mt-2"
                 >
                     Un nuevo enlace de verificación ha sido enviado a tu dirección de correo electrónico.
-                </v-alert>
+                </div>
             </div>
 
-            <div class="d-flex align-center gap-4 mt-4">
-                <v-btn type="submit" color="primary" :loading="form.processing">Guardar</v-btn>
-                <Transition enter-active-class="transition ease-in-out" enter-from-class="opacity-0" leave-active-class="transition ease-in-out" leave-to-class="opacity-0">
-                    <span v-if="form.recentlySuccessful" class="text-body-2">Guardado.</span>
-                </Transition>
+            <div class="d-flex align-items-center gap-3 mt-4">
+                <button type="submit" class="btn btn-primary" :disabled="form.processing">
+                    <span v-if="form.processing" class="spinner-border spinner-border-sm me-2" />
+                    Guardar
+                </button>
+                <span v-if="form.recentlySuccessful" class="small text-muted">Guardado.</span>
             </div>
-        </v-form>
+        </form>
     </section>
 </template>

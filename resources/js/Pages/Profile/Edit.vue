@@ -28,31 +28,31 @@ export default {
     <Head title="Perfil" />
 
     <AuthenticatedLayout>
-        <v-container>
-            <v-row justify="center">
-                <v-col cols="12" md="8" lg="6">
-                    <v-card class="mb-6">
-                        <v-card-text>
+        <div class="container py-4">
+            <div class="row justify-content-center">
+                <div class="col-12 col-md-8 col-lg-6">
+                    <div class="card shadow-sm mb-4">
+                        <div class="card-body">
                             <UpdateProfileInformationForm
                                 :must-verify-email="mustVerifyEmail"
                                 :status="status"
                             />
-                        </v-card-text>
-                    </v-card>
+                        </div>
+                    </div>
 
-                    <v-card class="mb-6">
-                        <v-card-text>
+                    <div class="card shadow-sm mb-4">
+                        <div class="card-body">
                             <UpdatePasswordForm />
-                        </v-card-text>
-                    </v-card>
+                        </div>
+                    </div>
 
-                    <v-card>
-                        <v-card-text>
+                    <div class="card shadow-sm">
+                        <div class="card-body">
                             <DeleteUserForm />
-                        </v-card-text>
-                    </v-card>
-                </v-col>
-            </v-row>
-        </v-container>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </AuthenticatedLayout>
 </template>

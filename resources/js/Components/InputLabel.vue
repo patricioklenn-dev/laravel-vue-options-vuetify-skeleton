@@ -12,8 +12,8 @@ export default {
 </script>
 
 <template>
-    <v-label :for="for">
+    <label class="form-label" :for="for">
         <span v-if="value">{{ value }}</span>
         <span v-else><slot /></span>
-    </v-label>
+    </label>
 </template>

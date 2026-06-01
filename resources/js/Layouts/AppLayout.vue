@@ -1,8 +1,7 @@
 <template>
-    <v-app>
-      <v-main>
-        <slot />
-      </v-main>
-    </v-app>
-  </template>
-  
+    <div class="min-vh-100 d-flex flex-column">
+        <main class="flex-grow-1">
+            <slot />
+        </main>
+    </div>
+</template>

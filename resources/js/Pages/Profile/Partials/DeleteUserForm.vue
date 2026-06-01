@@ -33,45 +33,55 @@ export default {
 
 <template>
     <section>
-        <header class="mb-6">
-            <h2 class="text-h6 mb-2">Eliminar cuenta</h2>
-            <p class="text-body-2 text-medium-emphasis">
+        <header class="mb-4">
+            <h2 class="h5 mb-2">Eliminar cuenta</h2>
+            <p class="text-muted small mb-0">
                 Una vez que se elimine tu cuenta, todos sus recursos y datos se eliminarán permanentemente. Antes de eliminar
                 tu cuenta, por favor descarga cualquier dato o información que desees conservar.
             </p>
         </header>
 
-        <v-btn color="error" @click="confirmUserDeletion">Eliminar cuenta</v-btn>
+        <button type="button" class="btn btn-danger" @click="confirmUserDeletion">Eliminar cuenta</button>
 
-        <v-dialog v-model="confirmingUserDeletion" max-width="500" @update:model-value="(val) => !val && closeModal()">
-            <v-card>
-                <v-card-title>
-                    ¿Estás seguro de querer eliminar tu cuenta?
-                </v-card-title>
-
-                <v-card-text>
-                    <p class="text-body-2 mb-4">
-                        Una vez que se elimine tu cuenta, todos sus recursos y datos se eliminarán permanentemente. Por favor
-                        ingresa tu contraseña para confirmar que deseas eliminar tu cuenta permanentemente.
-                    </p>
-
-                    <v-text-field
-                        ref="passwordInput"
-                        v-model="form.password"
-                        type="password"
-                        label="Contraseña"
-                        placeholder="Contraseña"
-                        :error-messages="form.errors.password"
-                        @keyup.enter="deleteUser"
-                    />
-                </v-card-text>
-
-                <v-card-actions>
-                    <v-spacer />
-                    <v-btn @click="closeModal">Cancelar</v-btn>
-                    <v-btn color="error" :loading="form.processing" @click="deleteUser">Eliminar cuenta</v-btn>
-                </v-card-actions>
-            </v-card>
-        </v-dialog>
+        <template v-if="confirmingUserDeletion">
+            <div class="modal fade show d-block" tabindex="-1" @click.self="closeModal">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">¿Estás seguro de querer eliminar tu cuenta?</h5>
+                            <button type="button" class="btn-close" @click="closeModal" />
+                        </div>
+                        <div class="modal-body">
+                            <p class="text-muted small mb-3">
+                                Una vez que se elimine tu cuenta, todos sus recursos y datos se eliminarán permanentemente. Por favor
+                                ingresa tu contraseña para confirmar que deseas eliminar tu cuenta permanentemente.
+                            </p>
+                            <div class="mb-3">
+                                <label for="delete_password" class="form-label">Contraseña</label>
+                                <input
+                                    id="delete_password"
+                                    ref="passwordInput"
+                                    v-model="form.password"
+                                    type="password"
+                                    class="form-control"
+                                    :class="{ 'is-invalid': form.errors.password }"
+                                    placeholder="Contraseña"
+                                    @keyup.enter="deleteUser"
+                                />
+                                <div v-if="form.errors.password" class="invalid-feedback">{{ form.errors.password }}</div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" @click="closeModal">Cancelar</button>
+                            <button type="button" class="btn btn-danger" :disabled="form.processing" @click="deleteUser">
+                                <span v-if="form.processing" class="spinner-border spinner-border-sm me-2" />
+                                Eliminar cuenta
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-backdrop fade show" />
+        </template>
     </section>
 </template>

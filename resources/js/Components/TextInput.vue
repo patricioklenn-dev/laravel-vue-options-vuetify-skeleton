@@ -5,25 +5,32 @@ export default {
             type: String,
             required: true,
         },
+        error: {
+            type: String,
+            default: '',
+        },
     },
     emits: ['update:modelValue'],
     mounted() {
-        if (this.$refs.input?.$el?.hasAttribute('autofocus')) {
-            this.$refs.input.$el.focus();
+        if (this.$refs.input?.hasAttribute('autofocus')) {
+            this.$refs.input.focus();
         }
     },
     methods: {
         focus() {
-            this.$refs.input?.$el?.focus();
+            this.$refs.input?.focus();
         },
     },
 }
 </script>
 
 <template>
-    <v-text-field
-        :model-value="modelValue"
-        @update:model-value="$emit('update:modelValue', $event)"
+    <input
         ref="input"
+        :value="modelValue"
+        class="form-control"
+        :class="{ 'is-invalid': error }"
+        @input="$emit('update:modelValue', $event.target.value)"
     />
+    <div v-if="error" class="invalid-feedback">{{ error }}</div>
 </template>

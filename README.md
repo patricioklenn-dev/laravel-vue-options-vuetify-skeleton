@@ -1,19 +1,19 @@
 # Laravel Vue Skeleton
 
-Laravel skeleton application with Vue.js, Inertia.js and Vuetify.
+Laravel skeleton application with Vue.js, Inertia.js and Bootstrap 5.
 
 ## Stack
 
 - **Backend**: Laravel 12
 - **Frontend**: Vue.js 3.5 with Inertia.js
-- **UI Framework**: Vuetify 3
+- **UI Framework**: Bootstrap 5
 - **Build Tool**: Vite 6
 
 ## Features
 
 - Authentication system (login, register, password reset, email verification)
 - User profile management
-- Modern UI with Vuetify components
+- Modern UI with Bootstrap components
 - Spanish language support for validation messages
 
 ## Installation

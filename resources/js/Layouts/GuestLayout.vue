@@ -1,14 +1,11 @@
 <template>
-    <v-app>
-      <v-main>
-        <v-container class="fill-height" fluid>
-          <v-row align="center" justify="center">
-            <v-col cols="12" sm="6" md="4">
-              <slot />
-            </v-col>
-          </v-row>
-        </v-container>
-      </v-main>
-    </v-app>
-  </template>
-  
+    <div class="min-vh-100 d-flex align-items-center justify-content-center bg-light">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-12 col-sm-8 col-md-6 col-lg-4">
+                    <slot />
+                </div>
+            </div>
+        </div>
+    </div>
+</template>

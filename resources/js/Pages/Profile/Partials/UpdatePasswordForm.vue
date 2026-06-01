@@ -34,46 +34,60 @@ export default {
 
 <template>
     <section>
-        <header class="mb-6">
-            <h2 class="text-h6 mb-2">Actualizar contraseña</h2>
-            <p class="text-body-2 text-medium-emphasis">
+        <header class="mb-4">
+            <h2 class="h5 mb-2">Actualizar contraseña</h2>
+            <p class="text-muted small mb-0">
                 Asegura que tu cuenta esté usando una contraseña larga y aleatoria para mantenerse segura.
             </p>
         </header>
 
-        <v-form @submit.prevent="updatePassword">
-            <v-text-field
-                label="Contraseña actual"
-                ref="currentPasswordInput"
-                v-model="form.current_password"
-                type="password"
-                :error-messages="form.errors.current_password"
-                autocomplete="current-password"
-            />
-
-            <v-text-field
-                label="Nueva contraseña"
-                ref="passwordInput"
-                v-model="form.password"
-                type="password"
-                :error-messages="form.errors.password"
-                autocomplete="new-password"
-            />
-
-            <v-text-field
-                label="Confirmar contraseña"
-                v-model="form.password_confirmation"
-                type="password"
-                :error-messages="form.errors.password_confirmation"
-                autocomplete="new-password"
-            />
-
-            <div class="d-flex align-center gap-4 mt-4">
-                <v-btn type="submit" color="primary" :loading="form.processing">Guardar</v-btn>
-                <Transition enter-active-class="transition ease-in-out" enter-from-class="opacity-0" leave-active-class="transition ease-in-out" leave-to-class="opacity-0">
-                    <span v-if="form.recentlySuccessful" class="text-body-2">Guardado.</span>
-                </Transition>
+        <form @submit.prevent="updatePassword">
+            <div class="mb-3">
+                <label for="current_password" class="form-label">Contraseña actual</label>
+                <input
+                    id="current_password"
+                    ref="currentPasswordInput"
+                    v-model="form.current_password"
+                    type="password"
+                    class="form-control"
+                    :class="{ 'is-invalid': form.errors.current_password }"
+                    autocomplete="current-password"
+                />
+                <div v-if="form.errors.current_password" class="invalid-feedback">{{ form.errors.current_password }}</div>
             </div>
-        </v-form>
+            <div class="mb-3">
+                <label for="password" class="form-label">Nueva contraseña</label>
+                <input
+                    id="password"
+                    ref="passwordInput"
+                    v-model="form.password"
+                    type="password"
+                    class="form-control"
+                    :class="{ 'is-invalid': form.errors.password }"
+                    autocomplete="new-password"
+                />
+                <div v-if="form.errors.password" class="invalid-feedback">{{ form.errors.password }}</div>
+            </div>
+            <div class="mb-3">
+                <label for="password_confirmation" class="form-label">Confirmar contraseña</label>
+                <input
+                    id="password_confirmation"
+                    v-model="form.password_confirmation"
+                    type="password"
+                    class="form-control"
+                    :class="{ 'is-invalid': form.errors.password_confirmation }"
+                    autocomplete="new-password"
+                />
+                <div v-if="form.errors.password_confirmation" class="invalid-feedback">{{ form.errors.password_confirmation }}</div>
+            </div>
+
+            <div class="d-flex align-items-center gap-3 mt-4">
+                <button type="submit" class="btn btn-primary" :disabled="form.processing">
+                    <span v-if="form.processing" class="spinner-border spinner-border-sm me-2" />
+                    Guardar
+                </button>
+                <span v-if="form.recentlySuccessful" class="small text-muted">Guardado.</span>
+            </div>
+        </form>
     </section>
 </template>

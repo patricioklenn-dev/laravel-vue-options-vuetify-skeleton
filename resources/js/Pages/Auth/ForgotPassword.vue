@@ -31,34 +31,38 @@ export default {
     <GuestLayout>
         <Head title="Forgot Password" />
 
-        <v-card>
-            <v-card-title>Forgot Password</v-card-title>
-
-            <v-card-text>
-                <div class="mb-4 text-body-2">
+        <div class="card shadow-sm">
+            <div class="card-header">Forgot Password</div>
+            <div class="card-body">
+                <p class="text-muted mb-4">
                     Olvidaste tu contraseña? No hay problema. Simplemente dínos tu dirección de correo electrónico y te enviaremos un enlace de restablecimiento de contraseña que te permitirá elegir una nueva.
-                </div>
+                </p>
 
-                <v-alert v-if="status" type="success" class="mb-4">
-                    {{ status }}
-                </v-alert>
+                <div v-if="status" class="alert alert-success mb-4">{{ status }}</div>
 
-                <v-form @submit.prevent="submit">
-                    <v-text-field
-                        label="Email"
-                        type="email"
-                        v-model="form.email"
-                        :error-messages="form.errors.email"
-                        required
-                        autofocus
-                        autocomplete="username"
-                    />
-
-                    <div class="d-flex justify-end mt-4">
-                        <v-btn type="submit" color="primary" :loading="form.processing">Enviar enlace de restablecimiento de contraseña</v-btn>
+                <form @submit.prevent="submit">
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email</label>
+                        <input
+                            id="email"
+                            v-model="form.email"
+                            type="email"
+                            class="form-control"
+                            :class="{ 'is-invalid': form.errors.email }"
+                            required
+                            autofocus
+                            autocomplete="username"
+                        />
+                        <div v-if="form.errors.email" class="invalid-feedback">{{ form.errors.email }}</div>
                     </div>
-                </v-form>
-            </v-card-text>
-        </v-card>
+                    <div class="d-flex justify-content-end mt-4">
+                        <button type="submit" class="btn btn-primary" :disabled="form.processing">
+                            <span v-if="form.processing" class="spinner-border spinner-border-sm me-2" />
+                            Enviar enlace de restablecimiento de contraseña
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
     </GuestLayout>
 </template>

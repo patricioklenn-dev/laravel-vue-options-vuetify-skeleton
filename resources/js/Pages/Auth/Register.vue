@@ -32,53 +32,72 @@ export default {
     <GuestLayout>
         <Head title="Register" />
 
-        <v-card>
-            <v-card-title>Registrar</v-card-title>
-
-            <v-card-text>
-                <v-form @submit.prevent="submit">
-                    <v-text-field
-                        label="Nombre"
-                        v-model="form.name"
-                        :error-messages="form.errors.name"
-                        required
-                        autofocus
-                        autocomplete="name"
-                    />
-
-                    <v-text-field
-                        label="Correo electrónico"
-                        type="email"
-                        v-model="form.email"
-                        :error-messages="form.errors.email"
-                        required
-                        autocomplete="username"
-                    />
-
-                    <v-text-field
-                        label="Contraseña"
-                        type="password"
-                        v-model="form.password"
-                        :error-messages="form.errors.password"
-                        required
-                        autocomplete="new-password"
-                    />
-
-                    <v-text-field
-                        label="Confirmar contraseña"
-                        type="password"
-                        v-model="form.password_confirmation"
-                        :error-messages="form.errors.password_confirmation"
-                        required
-                        autocomplete="new-password"
-                    />
-
-                    <div class="d-flex justify-space-between align-center mt-4">
-                        <Link :href="route('login')" class="text-decoration-none">Ya tienes una cuenta?</Link>
-                        <v-btn type="submit" color="primary" :loading="form.processing">Registrar</v-btn>
+        <div class="card shadow-sm">
+            <div class="card-header">Registrar</div>
+            <div class="card-body">
+                <form @submit.prevent="submit">
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Nombre</label>
+                        <input
+                            id="name"
+                            v-model="form.name"
+                            type="text"
+                            class="form-control"
+                            :class="{ 'is-invalid': form.errors.name }"
+                            required
+                            autofocus
+                            autocomplete="name"
+                        />
+                        <div v-if="form.errors.name" class="invalid-feedback">{{ form.errors.name }}</div>
                     </div>
-                </v-form>
-            </v-card-text>
-        </v-card>
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Correo electrónico</label>
+                        <input
+                            id="email"
+                            v-model="form.email"
+                            type="email"
+                            class="form-control"
+                            :class="{ 'is-invalid': form.errors.email }"
+                            required
+                            autocomplete="username"
+                        />
+                        <div v-if="form.errors.email" class="invalid-feedback">{{ form.errors.email }}</div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="password" class="form-label">Contraseña</label>
+                        <input
+                            id="password"
+                            v-model="form.password"
+                            type="password"
+                            class="form-control"
+                            :class="{ 'is-invalid': form.errors.password }"
+                            required
+                            autocomplete="new-password"
+                        />
+                        <div v-if="form.errors.password" class="invalid-feedback">{{ form.errors.password }}</div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="password_confirmation" class="form-label">Confirmar contraseña</label>
+                        <input
+                            id="password_confirmation"
+                            v-model="form.password_confirmation"
+                            type="password"
+                            class="form-control"
+                            :class="{ 'is-invalid': form.errors.password_confirmation }"
+                            required
+                            autocomplete="new-password"
+                        />
+                        <div v-if="form.errors.password_confirmation" class="invalid-feedback">{{ form.errors.password_confirmation }}</div>
+                    </div>
+                    <div class="d-flex justify-content-between align-items-center mt-4">
+                        <Link :href="route('login')" class="text-decoration-none">Ya tienes una cuenta?</Link>
+                        <button type="submit" class="btn btn-primary" :disabled="form.processing">
+                            <span v-if="form.processing" class="spinner-border spinner-border-sm me-2" />
+                            Registrar
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
     </GuestLayout>
 </template>

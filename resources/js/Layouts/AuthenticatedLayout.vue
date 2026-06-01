@@ -1,15 +1,17 @@
 <template>
-    <v-app>
-        <v-app-bar color="primary" dark>
-            <v-app-bar-title>Laravel</v-app-bar-title>
-            <v-spacer />
-            <v-btn text @click="$inertia.visit(route('dashboard'))">Panel de control</v-btn>
-            <v-btn text @click="$inertia.visit(route('profile.edit'))">Perfil</v-btn>
-            <v-btn text @click="$inertia.post(route('logout'))">Cerrar sesión</v-btn>
-        </v-app-bar>
-        <v-main>
+    <div class="min-vh-100 d-flex flex-column">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+            <div class="container-fluid">
+                <span class="navbar-brand mb-0 h1">Laravel</span>
+                <div class="d-flex gap-2 ms-auto">
+                    <button type="button" class="btn btn-link nav-link text-white" @click="$inertia.visit(route('dashboard'))">Panel de control</button>
+                    <button type="button" class="btn btn-link nav-link text-white" @click="$inertia.visit(route('profile.edit'))">Perfil</button>
+                    <button type="button" class="btn btn-link nav-link text-white" @click="$inertia.post(route('logout'))">Cerrar sesión</button>
+                </div>
+            </div>
+        </nav>
+        <main class="flex-grow-1">
             <slot />
-        </v-main>
-    </v-app>
+        </main>
+    </div>
 </template>
-  

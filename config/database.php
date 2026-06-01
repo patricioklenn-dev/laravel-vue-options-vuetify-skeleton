@@ -35,14 +35,6 @@ return [
 
     'connections' => [
 
-        'sqlite' => [
-            'driver' => 'sqlite',
-            'url' => env('DATABASE_URL'),
-            'database' => env('DB_DATABASE', database_path('database.sqlite')),
-            'prefix' => '',
-            'foreign_key_constraints' => env('DB_FOREIGN_KEYS', true),
-        ],
-
         'mysql' => [
             'driver' => 'mysql',
             'url' => env('DATABASE_URL'),
@@ -63,15 +55,15 @@ return [
             ]) : [],
         ],
 
-        'mysql_local' => [
+        'prueba' => [
             'driver' => 'mysql',
-            'url' => env('DB_LOCAL_URL'),
-            'host' => env('DB_LOCAL_HOST', '127.0.0.1'),
-            'port' => env('DB_LOCAL_PORT', '3306'),
-            'database' => env('DB_LOCAL_DATABASE', 'laravel'),
-            'username' => env('DB_LOCAL_USERNAME', 'root'),
-            'password' => env('DB_LOCAL_PASSWORD', ''),
-            'unix_socket' => env('DB_LOCAL_SOCKET', ''),
+            'url' => env('DB_PRUEBA_URL'),
+            'host' => env('DB_PRUEBA_HOST', '127.0.0.1'),
+            'port' => env('DB_PRUEBA_PORT', '3306'),
+            'database' => env('DB_PRUEBA_DATABASE', 'prueba'),
+            'username' => env('DB_PRUEBA_USERNAME', 'root'),
+            'password' => env('DB_PRUEBA_PASSWORD', ''),
+            'unix_socket' => env('DB_PRUEBA_SOCKET', ''),
             'charset' => 'utf8mb4',
             'collation' => 'utf8mb4_unicode_ci',
             'prefix' => '',

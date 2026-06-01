@@ -13,11 +13,11 @@ export default {
 <template>
     <Head title="Panel de control" />
     <AuthenticatedLayout>
-        <v-container>
-            <v-card>
-                <v-card-title>Panel de control</v-card-title>
-                <v-card-text>Estás conectado!</v-card-text>
-            </v-card>
-        </v-container>
+        <div class="container py-4">
+            <div class="card shadow-sm">
+                <div class="card-header">Panel de control</div>
+                <div class="card-body">Estás conectado!</div>
+            </div>
+        </div>
     </AuthenticatedLayout>
 </template>

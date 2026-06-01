@@ -18,12 +18,8 @@ export default {
 </script>
 
 <template>
-    <v-btn
-        :type="type"
-        color="primary"
-        :disabled="disabled"
-        :loading="loading"
-    >
+    <button :type="type" class="btn btn-primary" :disabled="disabled || loading">
+        <span v-if="loading" class="spinner-border spinner-border-sm me-2" />
         <slot />
-    </v-btn>
+    </button>
 </template>
